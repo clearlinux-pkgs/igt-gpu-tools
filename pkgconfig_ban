@@ -1,0 +1,6 @@
+# This file contains pkgconfig build requirements that get picked up
+# but are undesirable. One entry per line, no whitespace.
+xmlrpc
+xmlrpc_client
+xmlrpc_util
+libdrm_vc4
