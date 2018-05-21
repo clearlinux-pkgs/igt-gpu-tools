@@ -6,7 +6,7 @@
 #
 Name     : intel-gpu-tools
 Version  : 1.22
-Release  : 3
+Release  : 4
 URL      : https://xorg.freedesktop.org/releases/individual/app/intel-gpu-tools-1.22.tar.xz
 Source0  : https://xorg.freedesktop.org/releases/individual/app/intel-gpu-tools-1.22.tar.xz
 Source99 : https://xorg.freedesktop.org/releases/individual/app/intel-gpu-tools-1.22.tar.xz.sig
