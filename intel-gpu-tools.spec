@@ -6,7 +6,7 @@
 #
 Name     : intel-gpu-tools
 Version  : 1.22
-Release  : 4
+Release  : 5
 URL      : https://xorg.freedesktop.org/releases/individual/app/intel-gpu-tools-1.22.tar.xz
 Source0  : https://xorg.freedesktop.org/releases/individual/app/intel-gpu-tools-1.22.tar.xz
 Source99 : https://xorg.freedesktop.org/releases/individual/app/intel-gpu-tools-1.22.tar.xz.sig
@@ -48,6 +48,7 @@ BuildRequires : pkgconfig(xrandr)
 BuildRequires : pkgconfig(xv)
 BuildRequires : python3
 Patch1: build.patch
+Patch2: 0001-Use-flex-i-when-building-with-meson.patch
 
 %description
 Intel GPU Tools
@@ -93,13 +94,14 @@ dev components for the intel-gpu-tools package.
 %prep
 %setup -q -n intel-gpu-tools-1.22
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525479165
+export SOURCE_DATE_EPOCH=1527629811
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
 
