@@ -6,7 +6,7 @@
 #
 Name     : igt-gpu-tools
 Version  : 1.23
-Release  : 7
+Release  : 8
 URL      : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.23.tar.xz
 Source0  : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.23.tar.xz
 Source99 : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.23.tar.xz.sig
@@ -47,7 +47,6 @@ BuildRequires : pkgconfig(pixman-1)
 BuildRequires : pkgconfig(valgrind)
 BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xext)
-BuildRequires : pkgconfig(xorg-macros)
 BuildRequires : pkgconfig(xrandr)
 BuildRequires : pkgconfig(xv)
 
@@ -126,7 +125,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545256548
+export SOURCE_DATE_EPOCH=1545263538
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
 
