@@ -1,0 +1,73 @@
+From 07ced563c136959d57bb628add876d135db943a9 Mon Sep 17 00:00:00 2001
+From: Brandon Hong <brandon.hong@intel.com>
+Date: Tue, 1 Oct 2019 14:40:58 -0700
+Subject: [PATCH i-g-t] Fix global symbol loading failure in resolve function
+
+270 out of 284 tests get failed with SIGSEGV on ClearLinux because the ifunc
+resolver resolve_half_to_float() tries to call unbound global function
+igt_x86_features(). This patch fixes the issue by adding a F16C checking
+local function.
+
+Signed-off-by: Brandon Hong <brandon.hong@intel.com>
+---
+ lib/igt_halffloat.c | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/lib/igt_halffloat.c b/lib/igt_halffloat.c
+index 08ab05fc..17e9cf9d 100644
+--- a/lib/igt_halffloat.c
++++ b/lib/igt_halffloat.c
+@@ -24,6 +24,8 @@
+ 
+ #include <assert.h>
+ #include <math.h>
++#include <stdbool.h>
++#include <cpuid.h>
+ 
+ #include "igt_halffloat.h"
+ #include "igt_x86.h"
+@@ -182,6 +184,20 @@ static void half_to_float_f16c(const uint16_t *h, float *f, unsigned int num)
+ 
+ #pragma GCC pop_options
+ 
++static bool f16c_is_supported(void)
++{
++	unsigned max = __get_cpuid_max(0, NULL);
++	unsigned eax, ebx, ecx, edx;
++
++	if (max >= 1) {
++		__cpuid(1, eax, ebx, ecx, edx);
++
++		if (ecx & bit_F16C)
++			return true;
++	}
++	return false;
++}
++
+ static void float_to_half(const float *f, uint16_t *h, unsigned int num)
+ {
+ 	for (int i = 0; i < num; i++)
+@@ -194,9 +210,10 @@ static void half_to_float(const uint16_t *h, float *f, unsigned int num)
+ 		f[i] = _half_to_float(h[i]);
+ }
+ 
++
+ static void (*resolve_float_to_half(void))(const float *f, uint16_t *h, unsigned int num)
+ {
+-	if (igt_x86_features() & F16C)
++	if (f16c_is_supported())
+ 		return float_to_half_f16c;
+ 
+ 	return float_to_half;
+@@ -207,7 +224,7 @@ void igt_float_to_half(const float *f, uint16_t *h, unsigned int num)
+ 
+ static void (*resolve_half_to_float(void))(const uint16_t *h, float *f, unsigned int num)
+ {
+-	if (igt_x86_features() & F16C)
++	if (f16c_is_supported())
+ 		return half_to_float_f16c;
+ 
+ 	return half_to_float;
+-- 
+2.23.0
+

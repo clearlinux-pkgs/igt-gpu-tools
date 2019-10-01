@@ -1,2 +1,7 @@
-1.23
+1.24
+docbook-xml
 docutils
+gtk-doc-dev
+pkgconfig(gtk-doc)
+pkgconfig(json-c)
+pkgconfig(libcurl)
