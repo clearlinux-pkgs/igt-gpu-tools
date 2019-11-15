@@ -6,7 +6,7 @@
 #
 Name     : igt-gpu-tools
 Version  : 1.24
-Release  : 10
+Release  : 11
 URL      : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.24.tar.xz
 Source0  : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.24.tar.xz
 Source1 : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.24.tar.xz.sig
