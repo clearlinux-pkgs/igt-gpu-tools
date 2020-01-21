@@ -6,10 +6,10 @@
 #
 Name     : igt-gpu-tools
 Version  : 1.24
-Release  : 11
+Release  : 12
 URL      : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.24.tar.xz
 Source0  : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.24.tar.xz
-Source1 : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.24.tar.xz.sig
+Source1  : https://xorg.freedesktop.org/releases/individual/app/igt-gpu-tools-1.24.tar.xz.sig
 Summary  : An assembler compiler for the Intel 965+ Chipset
 Group    : Development/Tools
 License  : MIT
@@ -66,7 +66,6 @@ those can be difficult to track down to kernel changes, and many require
 complicated build procedures or specific testing environments to get useful
 results. Therefore, IGT GPU Tools includes low-level tools and tests
 specifically for development and testing of the DRM Drivers.
-
 
 %package bin
 Summary: bin components for the igt-gpu-tools package.
@@ -147,6 +146,7 @@ man components for the igt-gpu-tools package.
 
 %prep
 %setup -q -n igt-gpu-tools-1.24
+cd %{_builddir}/igt-gpu-tools-1.24
 %patch1 -p1
 
 %build
@@ -154,7 +154,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569966605
+export SOURCE_DATE_EPOCH=1579647350
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -172,7 +172,7 @@ ninja -v -C builddir test
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/igt-gpu-tools
-cp COPYING %{buildroot}/usr/share/package-licenses/igt-gpu-tools/COPYING
+cp %{_builddir}/igt-gpu-tools-1.24/COPYING %{buildroot}/usr/share/package-licenses/igt-gpu-tools/b7c2a42073c539ec92c45935081d17641175d61f
 DESTDIR=%{buildroot} ninja -C builddir install
 
 %files
@@ -625,7 +625,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/igt-gpu-tools/COPYING
+/usr/share/package-licenses/igt-gpu-tools/b7c2a42073c539ec92c45935081d17641175d61f
 
 %files man
 %defattr(0644,root,root,0755)
