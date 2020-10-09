@@ -2,5 +2,6 @@
 # picked up automatically. One name per line, no whitespace.
 flex
 bison
+docutils
 gobject-introspection
 gobject-introspection-dev

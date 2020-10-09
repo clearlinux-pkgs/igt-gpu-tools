@@ -1,0 +1,8 @@
+-Doverlay=disabled
+-Dchamelium=disabled
+-Dman=enabled
+-Ddocs=enabled
+-Dtests=enabled
+-Dlibunwind=enabled
+-Dvalgrind=enabled
+-Doping=disabled
