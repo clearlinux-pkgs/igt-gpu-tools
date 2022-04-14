@@ -6,7 +6,7 @@
 #
 Name     : igt-gpu-tools
 Version  : 1.26
-Release  : 16
+Release  : 17
 URL      : https://www.x.org/releases/individual/app/igt-gpu-tools-1.26.tar.xz
 Source0  : https://www.x.org/releases/individual/app/igt-gpu-tools-1.26.tar.xz
 Source1  : https://www.x.org/releases/individual/app/igt-gpu-tools-1.26.tar.xz.sig
@@ -23,7 +23,6 @@ BuildRequires : bison
 BuildRequires : buildreq-meson
 BuildRequires : cairo-dev
 BuildRequires : docbook-xml
-BuildRequires : docutils
 BuildRequires : flex
 BuildRequires : gobject-introspection
 BuildRequires : gobject-introspection-dev
@@ -41,8 +40,10 @@ BuildRequires : pkgconfig(pciaccess)
 BuildRequires : pkgconfig(pixman-1)
 BuildRequires : pkgconfig(valgrind)
 BuildRequires : pkgconfig(xv)
+BuildRequires : pypi-docutils
 BuildRequires : valgrind
 Patch1: 0001-Fix-global-symbol-loading-failure-in-resolve-functio.patch
+Patch2: backport-lib-meson.build-Fix-underscorify-call.patch
 
 %description
 IGT GPU Tools
@@ -138,13 +139,14 @@ man components for the igt-gpu-tools package.
 %setup -q -n igt-gpu-tools-1.26
 cd %{_builddir}/igt-gpu-tools-1.26
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1619761078
+export SOURCE_DATE_EPOCH=1649972078
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -165,7 +167,7 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-meson test -C builddir
+meson test -C builddir --print-errorlogs
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/igt-gpu-tools

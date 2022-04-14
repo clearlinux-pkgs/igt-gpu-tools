@@ -1,7 +1,7 @@
-From 07ced563c136959d57bb628add876d135db943a9 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Brandon Hong <brandon.hong@intel.com>
 Date: Tue, 1 Oct 2019 14:40:58 -0700
-Subject: [PATCH i-g-t] Fix global symbol loading failure in resolve function
+Subject: [PATCH] Fix global symbol loading failure in resolve function
 
 270 out of 284 tests get failed with SIGSEGV on ClearLinux because the ifunc
 resolver resolve_half_to_float() tries to call unbound global function
@@ -14,7 +14,7 @@ Signed-off-by: Brandon Hong <brandon.hong@intel.com>
  1 file changed, 19 insertions(+), 2 deletions(-)
 
 diff --git a/lib/igt_halffloat.c b/lib/igt_halffloat.c
-index 08ab05fc..17e9cf9d 100644
+index 08ab05f..17e9cf9 100644
 --- a/lib/igt_halffloat.c
 +++ b/lib/igt_halffloat.c
 @@ -24,6 +24,8 @@
@@ -68,6 +68,3 @@ index 08ab05fc..17e9cf9d 100644
  		return half_to_float_f16c;
  
  	return half_to_float;
--- 
-2.23.0
-

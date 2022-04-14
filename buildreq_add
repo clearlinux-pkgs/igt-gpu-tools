@@ -2,6 +2,6 @@
 # picked up automatically. One name per line, no whitespace.
 flex
 bison
-docutils
+pypi-docutils
 gobject-introspection
 gobject-introspection-dev
