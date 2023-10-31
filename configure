@@ -1,7 +1,7 @@
 -Doverlay=disabled
 -Dchamelium=disabled
 -Dman=enabled
--Ddocs=enabled
+-Ddocs=disabled
 -Dtests=enabled
 -Dlibunwind=enabled
 -Dvalgrind=enabled

@@ -1,4 +1,4 @@
-1.27.1
+1.28
 cairo-dev
 docbook-xml
 gtk-doc-dev
@@ -8,7 +8,7 @@ pkgconfig(json-c)
 pkgconfig(libdrm)
 pkgconfig(libdw)
 pkgconfig(libkmod)
-pkgconfig(libprocps)
+pkgconfig(libproc2)
 pkgconfig(libudev)
 pkgconfig(libunwind)
 pkgconfig(pixman-1)

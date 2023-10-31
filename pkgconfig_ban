@@ -5,3 +5,4 @@ liboping
 xmlrpc
 xmlrpc_client
 xmlrpc_util
+libprocps
