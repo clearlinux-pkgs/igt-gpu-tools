@@ -5,3 +5,4 @@ bison
 pypi-docutils
 gobject-introspection
 gobject-introspection-dev
+procps-ng-dev

@@ -1,14 +1,10 @@
-1.28
+1.29
 cairo-dev
-docbook-xml
-gtk-doc-dev
 pkgconfig(cairo)
-pkgconfig(gtk-doc)
 pkgconfig(json-c)
 pkgconfig(libdrm)
 pkgconfig(libdw)
 pkgconfig(libkmod)
-pkgconfig(libproc2)
 pkgconfig(libudev)
 pkgconfig(libunwind)
 pkgconfig(pixman-1)

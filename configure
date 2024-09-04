@@ -1,6 +1,6 @@
 -Doverlay=disabled
 -Dchamelium=disabled
--Dman=enabled
+-Dman=disabled
 -Ddocs=disabled
 -Dtests=enabled
 -Dlibunwind=enabled
